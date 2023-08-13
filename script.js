@@ -14,9 +14,13 @@ let isRunning = false; //스톱워치가 시작되어있는지를 확인하는 �
 startPauseBtn.addEventListener("click", () => {
   if (isRunning == false) {
     startStopwatch(); // 스톱워치 시작
-    // 버튼 상태 변경: 시작 버튼 -> 일시정지 버튼, 리셋버튼 활성화
+    resetBtn.disabled = false; // 리셋버튼 활성화
+
+    // 버튼 상태 변경: 시작 버튼 -> 일시정지 버튼
+
   } else {
     clearInterval(intervalId); // 타이머 간격 제거 == 스톱워치 일시정지
+    isRunning = false; // 스톱워치가 비활성화 된 것을 변수로 저장
     // 버튼 상태 변경 : 일시정지 버튼 -> 시작 버튼
   }
 });
@@ -24,7 +28,11 @@ startPauseBtn.addEventListener("click", () => {
 // reset 버튼 클릭 시
 resetBtn.addEventListener("click", () => {
   clearInterval(intervalId); // 타이머 간격 제거하여 스톱워치 멈춤
-  // 스톱워치 초기화 및 버튼 상태 변경
+
+  // 스톱워치 초기화
+  stopwatchDisplay.innerHTML = `00:00:00.00`
+  // 리셋버튼 비활성화
+  resetBtn.disabled = true;
 });
 
 
@@ -32,6 +40,7 @@ resetBtn.addEventListener("click", () => {
 function startStopwatch() {
   startTime = Date.now(); // 버튼 클릭 시점의 시간으로 설정
   intervalId = setInterval(updateTime, 10); // 1초마다 updateTime 함수 호출
+  isRunning = true; // 스톱워치가 활성화 된 것을 변수로 저장
 }
 
 // 시간 업데이트 함수
