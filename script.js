@@ -1,27 +1,41 @@
 // Get HTML Elements
 const stopwatchDisplay = document.querySelector("#stopwatchDisplay");
 const resetBtn = document.querySelector("#resetBtn");
-const startPauseBtn = document.querySelector("#startPauseBtn");
+const startBtn = document.querySelector("#startBtn");
+const pauseBtn = document.querySelector("#pauseBtn");
 
 // 변수 설정
-let startTime = 0; // 시간 값, 초기값은 0
+let startTime = 0; // 시간 값이다. 초기값은 0
 let intervalId; // 타이머 간격을 저장할 변수
 let isRunning = false; //스톱워치가 시작되어있는지를 확인하는 변수
 
+let pausedTime = 0; // pause 버튼을 눌렀을 때 스톱워치 시간 값. 초기값은 0
+
 
 // 이벤트 핸들러 추가
-// startPause 버튼 클릭 시
-startPauseBtn.addEventListener("click", () => {
+// start 버튼 클릭 시
+startBtn.addEventListener("click", () => {
   if (isRunning == false) {
     startStopwatch(); // 스톱워치 시작
+    
+    // 버튼 상태 변경 
+    startBtn.style.display = "none";
+    pauseBtn.style.display = "inline-block";
     resetBtn.disabled = false; // 리셋버튼 활성화
 
-    // 버튼 상태 변경: 시작 버튼 -> 일시정지 버튼
+  }
+});
 
-  } else {
+// pause 버튼 클릭 시
+pauseBtn.addEventListener("click", () => {
+  if (isRunning == true) {
     clearInterval(intervalId); // 타이머 간격 제거 == 스톱워치 일시정지
     isRunning = false; // 스톱워치가 비활성화 된 것을 변수로 저장
+    pausedTime = 
+
     // 버튼 상태 변경 : 일시정지 버튼 -> 시작 버튼
+    pauseBtn.style.display = "none";
+    startBtn.style.display = "inline-block";
   }
 });
 
