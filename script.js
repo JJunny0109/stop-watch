@@ -15,47 +15,36 @@ let pausedTime = 0; // pause 버튼을 눌렀을 때 스톱워치 시간 값. �
 // 이벤트 핸들러 추가
 // start 버튼 클릭 시
 startBtn.addEventListener("click", () => {
-  if (isRunning == false) {
-    startStopwatch(); // 스톱워치 시작
-    
-    // 버튼 상태 변경 
-    startBtn.style.display = "none";
-    pauseBtn.style.display = "inline-block";
-    resetBtn.disabled = false; // 리셋버튼 활성화
+  // 스톱워치 함수 구현
+  startTime = Date.now(); // 버튼 클릭 시점의 시간으로 설정
+  intervalId = setInterval(updateTime, 10); // 1초마다 updateTime 함수 호출
+  isRunning = true; // 스톱워치가 활성화 된 것을 변수로 저장
 
-  }
+  // 버튼 상태 변경 
+  startBtn.style.display = "none";
+  pauseBtn.style.display = "inline-block";
+  resetBtn.disabled = false; // 리셋버튼 활성화
 });
 
 // pause 버튼 클릭 시
 pauseBtn.addEventListener("click", () => {
-  if (isRunning == true) {
     clearInterval(intervalId); // 타이머 간격 제거 == 스톱워치 일시정지
     isRunning = false; // 스톱워치가 비활성화 된 것을 변수로 저장
-    pausedTime = 
 
     // 버튼 상태 변경 : 일시정지 버튼 -> 시작 버튼
     pauseBtn.style.display = "none";
     startBtn.style.display = "inline-block";
-  }
 });
 
 // reset 버튼 클릭 시
 resetBtn.addEventListener("click", () => {
   clearInterval(intervalId); // 타이머 간격 제거하여 스톱워치 멈춤
-
-  // 스톱워치 초기화
-  stopwatchDisplay.innerHTML = `00:00:00.00`
-  // 리셋버튼 비활성화
-  resetBtn.disabled = true;
+  isRunning = false; // 스톱워치가 비활성화 된 것을 변수로 저장
+  stopwatchDisplay.innerHTML = `00:00:00.00` // 스톱워치 초기화
+  resetBtn.disabled = true; // 리셋버튼 비활성화
 });
 
 
-// 스톱워치 함수 구현
-function startStopwatch() {
-  startTime = Date.now(); // 버튼 클릭 시점의 시간으로 설정
-  intervalId = setInterval(updateTime, 10); // 1초마다 updateTime 함수 호출
-  isRunning = true; // 스톱워치가 활성화 된 것을 변수로 저장
-}
 
 // 시간 업데이트 함수
 function updateTime() {
