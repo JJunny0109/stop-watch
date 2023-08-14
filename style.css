@@ -1,7 +1,75 @@
-  .pause-btn {
-    display: none;
-  }
+@font-face{
+  font-family:'Digital-7';
+  src: url('put_the_location_to_your_font.ttf or .otf');
+ }
 
-  .start-btn {
-    display: inline-block;
-  }
+body {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  height: 100vh;
+  margin: 0;
+}
+
+.container {
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  min-width: 80vh;
+  margin-top: 20vh; /* 세로 위치 조정 */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3); /* 그림자 효과 */
+  border-radius: 5px; /* 모서리 둥글게 */
+  padding: 20px; /* 안쪽 여백 */
+}
+
+.clock-display {
+  font-family: "Digital-7", monospace; /* 폰트 설정 */
+  color: #333; /* 글자 색상 */
+  white-space: nowrap; /* 텍스트가 줄 바꿈되지 않도록 설정 */
+  padding: 10px 20px; /* Padding */ /* 안쪽 여백 */
+  font-size: 3em;
+
+}
+
+.btn-area {
+  display: flex; /* Flexbox 컨테이너로 설정 */
+  justify-content: space-between; /* 버튼들 사이에 공간을 분배하여 정렬 */
+  align-items: center; /* 버튼들을 세로로 가운데 정렬 */
+}
+
+.btn {
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer; /* 커서 모양을 포인터로 변경 */
+  border-radius: 5px; /* 모서리 둥글게 */
+  margin : 1vh;
+}
+
+
+#startBtn {
+  display: inline-block;
+  background-color: #4CAF50; /* 초록색 */
+}
+
+#pauseBtn {
+  display: none;
+  background-color: #FF5733; /* 빨간색 */
+}
+
+#resetBtn {
+  background-color: #FFC107; /* Yellow */
+  color: #555; /* 텍스트 색상 변경 */
+}
+
+/* disabled 상태일 때의 스타일 */
+#resetBtn:disabled {
+  background-color: #FFECB3; /* 연한 노란색 */
+  color: #888; /* 텍스트 색상 변경 */
+  cursor: not-allowed; /* 커서 모양을 금지 표시로 변경 */
+}
